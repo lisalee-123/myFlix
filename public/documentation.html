@@ -10,20 +10,236 @@
   <body>
     <h1>Documentation myFlix API</h1>
     <div class="documentation">
-      <p>
-        freestar Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        nec mattis nisi. Mauris lacinia turpis dui, vel aliquam est porta non.
-        Cras aliquam sollicitudin enim, sit amet mollis dui placerat nec. In hac
-        habitasse platea dictumst. Proin facilisis eget metus sit amet
-        fermentum. Nullam nec convallis augue, interdum dictum massa. Morbi
-        interdum malesuada massa, a posuere ligula. Donec consequat est et urna
-        molestie, nec ultricies quam accumsan. Duis tempus sapien at diam
-        rutrum, vel dignissim elit sagittis. Donec sodales metus quis sapien
-        molestie placerat. Etiam vitae maximus sem. Phasellus eget nisi nec
-        magna tincidunt finibus eu eu tortor. Nullam pretium nisi odio, id
-        pulvinar nisi maximus quis. Aenean eget arcu massa. Phasellus varius
-        tellus ac lacinia dictum.
-      </p>
+      <p>Returns a collection of movies.</p>
+      <h2>Resource URL</h2>
+      <p>http://localhost:8080/</p>
+      <h2>Resource information</h2>
+      <table class="table">
+        <tr>
+          <th>
+            <p>Response format</p>
+          </th>
+          <th>
+            <p>JSON</p>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <p>Requires authentication</p>
+          </th>
+          <th>
+            <p>No</p>
+          </th>
+        </tr>
+      </table>
     </div>
+    <h2>Parameters</h2>
+
+    <h2>URL endpoints</h2>
+
+    <table class="table">
+      <tr>
+        <th>
+          <h3>Business Logic</h3>
+        </th>
+        <th>
+          <h3>Endpoint URL</h3>
+        </th>
+        <th>
+          <h3>Method type</h3>
+        </th>
+        <th>
+          <h3>Parameters</h3>
+        </th>
+        <th>
+          <h3>Request Body Data Format</h3>
+        </th>
+        <th>
+          <h3>Response Body Data Format</h3>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>get a list of all movies</p>
+        </th>
+        <th>
+          <p>/movies</p>
+        </th>
+        <th>
+          <p>GET</p>
+        </th>
+        <th>
+          <p>movies</p>
+        </th>
+        <th>
+          <p>none</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>get a movie by title</p>
+        </th>
+        <th>
+          <p>/movies/:title</p>
+        </th>
+        <th>
+          <p>GET</p>
+        </th>
+        <th>
+          <p>movies, title</p>
+        </th>
+        <th>
+          <p>none</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>get the genre by name</p>
+        </th>
+        <th>
+          <p>/movies/genre/:genreName</p>
+        </th>
+        <th>
+          <p>GET</p>
+        </th>
+        <th>
+          <p>movies, genre, genreName</p>
+        </th>
+        <th>
+          <p>none</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>get the director by name</p>
+        </th>
+        <th>
+          <p>/movies/directors/:directorName</p>
+        </th>
+        <th>
+          <p>GET</p>
+        </th>
+        <th>
+          <p>movies, directors, directorName</p>
+        </th>
+        <th>
+          <p>none</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>add a new user</p>
+        </th>
+        <th>
+          <p>/users</p>
+        </th>
+        <th>
+          <p>POST</p>
+        </th>
+        <th>
+          <p>users, id, newUser, userName</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>change a user name</p>
+        </th>
+        <th>
+          <p>/users/:id</p>
+        </th>
+        <th>
+          <p>PUT</p>
+        </th>
+        <th>
+          <p>users, user.id, updatedUser, user.userName</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>delete a user</p>
+        </th>
+        <th>
+          <p>/users/:id</p>
+        </th>
+        <th>
+          <p>DELETE</p>
+        </th>
+        <th>
+          <p>users, user.id</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+        <th>
+          <p>plain text</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>add a movie to the user`s favorites</p>
+        </th>
+        <th>
+          <p>/users/:id/:movieTitle</p>
+        </th>
+        <th>
+          <p>POST</p>
+        </th>
+        <th>
+          <p>users, movieTitle, id, favoriteMovies</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+        <th>
+          <p>plain text</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>remove a movie from the user`s favorites</p>
+        </th>
+        <th>
+          <p>/users/:id/:movieTitle</p>
+        </th>
+        <th>
+          <p>DELETE</p>
+        </th>
+        <th>
+          <p>users, movieTitle, id, favoriteMovies</p>
+        </th>
+        <th>
+          <p>JSON</p>
+        </th>
+        <th>
+          <p>plain text</p>
+        </th>
+      </tr>
+    </table>
+    <h2>Example Request</h2>
+    <h2>Example Response</h2>
   </body>
 </html>

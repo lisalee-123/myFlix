@@ -1,0 +1,18 @@
+.documentation p {
+  width: 60%;
+}
+
+.table {
+  margin: 50px 0;
+}
+
+.table,
+tr,
+th {
+  border-style: solid;
+  width: fit-content;
+}
+
+th {
+  padding: 0 15px;
+}
