@@ -150,42 +150,43 @@ app.put("/users/:UserName", (req, res) => {
   );
 });
 
-//Allow users to add a movie to their list of favorites
 app.post("/users/:UserName/movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { UserName: req.params.UserName },
-    {
-      $push: { FavoriteMovies: req.params.MovieID },
-    },
-    { new: true },
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+    { $addToSet: { FavoriteMovies: req.params.MovieID } },
+    { new: true }
+  )
+    .then((updatedUser) => {
+      if (!updatedUser) {
+        return res.status(404).send("Error: User doesn't exist");
       } else {
         res.json(updatedUser);
       }
-    }
-  );
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
 });
 
 //Allow users to delete a movie from their list of favorites
-app.delete("/users/:UserName/Movies/:MovieID", (req, res) => {
+app.delete("/users/:UserName/movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { UserName: req.params.UserName },
-    {
-      $pull: { FavoriteMovies: req.params.MovieID },
-    },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+    { $pull: { FavoriteMovies: req.params.MovieID } },
+    { new: true }
+  )
+    .then((updatedUser) => {
+      if (!updatedUser) {
+        return res.status(404).send("Error: User doesn't exist");
       } else {
         res.json(updatedUser);
       }
-    }
-  );
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
 });
 
 //Allow existing users to deregister
