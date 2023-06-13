@@ -10,10 +10,14 @@
   <body>
     <h1>Documentation myFlix API</h1>
     <div class="documentation">
-      <p>Returns a collection of movies.</p>
+      <p>
+        The myFlix API provides access to a collection of movies and related
+        information. This documentation outlines the available endpoints and
+        their functionalities.
+      </p>
       <h2>Resource URL</h2>
       <p>http://localhost:8080/</p>
-      <h2>Resource information</h2>
+
       <table class="table">
         <tr>
           <th>
@@ -33,14 +37,12 @@
         </tr>
       </table>
     </div>
-    <h2>Parameters</h2>
 
-    <h2>URL endpoints</h2>
-
+    <h2>Endpoints</h2>
     <table class="table">
       <tr>
         <th>
-          <h3>Business Logic</h3>
+          <h3>Logic</h3>
         </th>
         <th>
           <h3>Endpoint URL</h3>
@@ -83,13 +85,13 @@
           <p>get a movie by title</p>
         </th>
         <th>
-          <p>/movies/:title</p>
+          <p>/movies/:Title</p>
         </th>
         <th>
           <p>GET</p>
         </th>
         <th>
-          <p>movies, title</p>
+          <p>Title: The title of the movie</p>
         </th>
         <th>
           <p>none</p>
@@ -103,13 +105,13 @@
           <p>get the genre by name</p>
         </th>
         <th>
-          <p>/movies/genre/:genreName</p>
+          <p>/genre/:Name</p>
         </th>
         <th>
           <p>GET</p>
         </th>
         <th>
-          <p>movies, genre, genreName</p>
+          <p>Name: The name of the genre</p>
         </th>
         <th>
           <p>none</p>
@@ -123,13 +125,13 @@
           <p>get the director by name</p>
         </th>
         <th>
-          <p>/movies/directors/:directorName</p>
+          <p>/director/:Name</p>
         </th>
         <th>
           <p>GET</p>
         </th>
         <th>
-          <p>movies, directors, directorName</p>
+          <p>Name: The name of the director</p>
         </th>
         <th>
           <p>none</p>
@@ -149,7 +151,7 @@
           <p>POST</p>
         </th>
         <th>
-          <p>users, id, newUser, userName</p>
+          <p>N/A</p>
         </th>
         <th>
           <p>JSON</p>
@@ -160,16 +162,16 @@
       </tr>
       <tr>
         <th>
-          <p>change a user name</p>
+          <p>change user data</p>
         </th>
         <th>
-          <p>/users/:id</p>
+          <p>/users/:UserName</p>
         </th>
         <th>
           <p>PUT</p>
         </th>
         <th>
-          <p>users, user.id, updatedUser, user.userName</p>
+          <p>UserName: The username of the user</p>
         </th>
         <th>
           <p>JSON</p>
@@ -183,13 +185,13 @@
           <p>delete a user</p>
         </th>
         <th>
-          <p>/users/:id</p>
+          <p>/users/:UserName</p>
         </th>
         <th>
           <p>DELETE</p>
         </th>
         <th>
-          <p>users, user.id</p>
+          <p>UserName: The username of the user</p>
         </th>
         <th>
           <p>JSON</p>
@@ -203,13 +205,16 @@
           <p>add a movie to the user`s favorites</p>
         </th>
         <th>
-          <p>/users/:id/:movieTitle</p>
+          <p>/users/:UserName/movies/:MovieID</p>
         </th>
         <th>
           <p>POST</p>
         </th>
         <th>
-          <p>users, movieTitle, id, favoriteMovies</p>
+          <p>
+            UserName: Name of the user <br />
+            MovieID: movie ID <br />
+          </p>
         </th>
         <th>
           <p>JSON</p>
@@ -223,13 +228,16 @@
           <p>remove a movie from the user`s favorites</p>
         </th>
         <th>
-          <p>/users/:id/:movieTitle</p>
+          <p>/users/:UserName/movies/:MovieID</p>
         </th>
         <th>
           <p>DELETE</p>
         </th>
         <th>
-          <p>users, movieTitle, id, favoriteMovies</p>
+          <p>
+            UserName: Name of the user <br />
+            MovieID: movie ID <br />
+          </p>
         </th>
         <th>
           <p>JSON</p>
@@ -239,7 +247,90 @@
         </th>
       </tr>
     </table>
+
+    <h2>Entities and Attributes</h2>
+    <table class="table">
+      <tr>
+        <th>
+          <h3>Entity</h3>
+        </th>
+        <th>
+          <h3>Attributes</h3>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Movies</p>
+        </th>
+        <th>
+          <p>Title, Director, Year, Description, ImagePath</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Users</p>
+        </th>
+        <th>
+          <p>ID, UserName, Birthday, Password, FavoriteMovies</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Directors</p>
+        </th>
+        <th>
+          <p>Name, Birth, Death, Bio</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Genre</p>
+        </th>
+        <th>
+          <p>Name, Description</p>
+        </th>
+      </tr>
+    </table>
     <h2>Example Request</h2>
+    <pre>
+        <code>
+GET /movies/Inception HTTP/1.1
+Host: localhost:8080
+        </code>
+    </pre>
     <h2>Example Response</h2>
+    <pre>
+      <code>
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "Genre": {
+      "Name": "Thriller",
+      "Description": "Thriller movies create suspense and tension through thrilling and intense storylines."
+  },
+  "Director": {
+      "Name": "Christopher Nolan",
+      "Born": "1970",
+      "Death": null,
+      "Bio": "Updated Bio: Christopher Nolan is a British-American director known for his mind-bending and visually stunning films."
+  },
+  "_id": "6486fc0df079d68911f36a6a",
+  "Title": "Inception",
+  "Description": "Updated: A thief who steals corporate secrets through dream-sharing technology is given the task of planting an idea into a CEO's mind.",
+  "Year": "2010",
+  "ImagePath": "inception.png",
+  "featured": true
+}
+      </code>
+  </pre>
+
+    <h2>Conclusion</h2>
+    <p>
+      The myFlix API provides a convenient way to access movie information,
+      genres, directors, and user data. With the available endpoints, developers
+      can build applications that leverage the myFlix movie collection and user
+      management features.
+    </p>
   </body>
 </html>
