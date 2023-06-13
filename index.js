@@ -132,7 +132,7 @@ app.put("/users/:UserName", (req, res) => {
     { UserName: req.params.UserName },
     {
       $set: {
-        UserName: req.body.Username,
+        UserName: req.body.UserName,
         Password: req.body.Password,
         Email: req.body.Email,
         Birthday: req.body.Birthday,
@@ -157,7 +157,7 @@ app.post("/users/:UserName/movies/:MovieID", (req, res) => {
     {
       $push: { FavoriteMovies: req.params.MovieID },
     },
-    { new: true }, // This line makes sure that the updated document is returned
+    { new: true },
     (err, updatedUser) => {
       if (err) {
         console.error(err);
@@ -170,7 +170,7 @@ app.post("/users/:UserName/movies/:MovieID", (req, res) => {
 });
 
 //Allow users to delete a movie from their list of favorites
-app.delete("/users/:UserName/movies/:MovieID", (req, res) => {
+app.delete("/users/:UserName/Movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { UserName: req.params.UserName },
     {
@@ -190,12 +190,12 @@ app.delete("/users/:UserName/movies/:MovieID", (req, res) => {
 
 //Allow existing users to deregister
 app.delete("/users/:UserName", (req, res) => {
-  Users.findOneAndRemove({ Username: req.params.UserName })
+  Users.findOneAndRemove({ UserName: req.params.UserName })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.Username + " was not found");
+        res.status(400).send(req.params.UserName + " was not found");
       } else {
-        res.status(200).send(req.params.Username + " was deleted.");
+        res.status(200).send(req.params.UserName + " was deleted.");
       }
     })
     .catch((err) => {
