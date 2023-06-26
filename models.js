@@ -22,12 +22,12 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-  UserName: { type: String, required: true },
+  Username: { type: String, required: true },
   Password: { type: String, required: true },
   Email: { type: String, required: true },
   Birthday: Date,
   FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
-}); //reference format, to link the users collection to the movie collection
+}); //reference format, to link the users collection to the movie collection, outputs an array
 
 //creation of the models
 let Movie = mongoose.model("Movie", movieSchema); //creates collection called db.movies
